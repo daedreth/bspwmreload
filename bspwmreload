@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+
+# bspwmrc is a shell script, by filtering out non-bspwm related lines we can
+# simply rerun the script at runtime to apply changes.
+# no idea why this isn't part of the wm
+
+import os
+from subprocess import call
+
+def main():
+    bspwmrc = os.environ['HOME'] + '/.config/bspwm/bspwmrc'
+    with open(bspwmrc) as f:
+        for line in f:
+            if not line.startswith('bspc'):
+                continue # avoid autostart lines and bspwm unrelated commands
+            line.rstrip('\n') # get rid of newline characters
+            line = line.replace("\\", "") # this avoid double escaping
+            arglist = line.split()
+            call(arglist)
+
+if __name__ == '__main__':
+    main()
