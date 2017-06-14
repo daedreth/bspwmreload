@@ -15,6 +15,8 @@ You need python3 for this, which you probably already have.
   ~~~
 
 Just invoke `bspwmreload` whenever you want to you reload the configuration. 
+If your bspwmrc is at an unusual location for some odd reason, you can pass it in as an argument.
+The default is always `$HOME/.config/bspwm/bspwmrc`
 
 # License
 It's MIT, but it's just a little script.

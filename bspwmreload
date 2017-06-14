@@ -4,19 +4,23 @@
 # simply rerun the script at runtime to apply changes.
 # no idea why this isn't part of the wm
 
+import sys
 import os
 from subprocess import call
 
 def main():
-    bspwmrc = os.environ['HOME'] + '/.config/bspwm/bspwmrc'
+    if len(sys.argv) > 1:
+        bspwmrc = sys.argv[1] # use argv as path to bspwmrc if needed
+    else:
+        bspwmrc = os.environ['HOME'] + '/.config/bspwm/bspwmrc'
+
     with open(bspwmrc) as f:
         for line in f:
             if not line.startswith('bspc'):
                 continue # avoid autostart lines and bspwm unrelated commands
             line.rstrip('\n') # get rid of newline characters
             line = line.replace("\\", "") # this avoid double escaping
-            arglist = line.split()
-            call(arglist)
+            call(line.split())
 
 if __name__ == '__main__':
     main()
