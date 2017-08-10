@@ -10,7 +10,6 @@ You need python3 for this, which you probably already have.
 
   ~~~ sh
   $ wget https://raw.githubusercontent.com/daedreth/bspwmreload/master/bspwmreload
-  $ sudo chmod +x bspwmreload
   $ sudo cp bspwmreload /usr/bin/bspwmreload
   ~~~
 

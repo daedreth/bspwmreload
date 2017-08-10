@@ -4,18 +4,15 @@
 # simply rerun the script at runtime to apply changes.
 # no idea why this isn't part of the wm
 
-import sys
-import os
+from sys import argv
+from os import environ
 from subprocess import call
 
 def main():
-    if len(sys.argv) > 1:
-        bspwmrc = sys.argv[1] # use argv as path to bspwmrc if needed
-    else:
-        bspwmrc = os.environ['HOME'] + '/.config/bspwm/bspwmrc'
+    bspwmrc = argv[1] if (len(argv) > 1) else environ['HOME'] + '/.config/bspwm/bspwmrc' # I miss C
 
-    with open(bspwmrc) as f:
-        for line in f:
+    with open(bspwmrc) as configFile: # see, thats smart
+        for line in configFile:
             if not line.startswith('bspc'):
                 continue # avoid autostart lines and bspwm unrelated commands
             line.rstrip('\n') # get rid of newline characters
