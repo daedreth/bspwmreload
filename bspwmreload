@@ -13,11 +13,10 @@ def main():
 
     with open(bspwmrc) as configFile: # see, thats smart
         for line in configFile:
-            if not line.startswith('bspc'):
-                continue # avoid autostart lines and bspwm unrelated commands
-            line.rstrip('\n') # get rid of newline characters
-            line = line.replace("\\", "") # this avoid double escaping
-            call(line.split())
+            if line.startswith('bspc'):
+                line.rstrip('\n') # get rid of newline characters
+                line = line.replace("\\", "") # this avoid double escaping
+                call(line.split())
 
 if __name__ == '__main__':
     main()
